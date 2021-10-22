@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.IOConstants;
+import frc.robot.ControlBoard.ControlBoard;
 import frc.robot.commands.Droom;
 import frc.robot.subsystems.Droop;
 
@@ -24,14 +25,16 @@ public class RobotContainer {
 
   private final Droop k_droop = new Droop();
 
-  private final Joystick k_controller = new Joystick(IOConstants.DRIVE_PORT);
+  //private final Joystick k_controller = new Joystick(IOConstants.DRIVE_PORT);
+
+  private final ControlBoard k_controller = ControlBoard.getInstance();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
-    k_droop.setDefaultCommand(new Droom(k_droop, () -> k_controller.getX(Hand.kLeft),() -> k_controller.getY(Hand.kLeft)));
+    k_droop.setDefaultCommand(new Droom(k_droop, () -> k_controller.getThrottle(),() -> k_controller.getRight()));
   }
 
   /**

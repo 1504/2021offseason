@@ -4,12 +4,24 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PneumaticsConstants;
 
 public class Boop extends SubsystemBase {
 
-//PNEUMATICS SUBSYSTEM
-  public Boop() {}
+  private final Compressor b_compressor = new Compressor();
+
+  private final Solenoid b_solenoid = new Solenoid(PneumaticsConstants.SOLOMON_PORT);
+
+  public Boop() {
+    b_compressor.setClosedLoopControl(true);
+  }
+
+  public Solenoid getGatePiston(){
+    return b_solenoid;
+  }
 
   @Override
   public void periodic() {

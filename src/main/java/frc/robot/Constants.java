@@ -25,4 +25,8 @@ public final class Constants {
     public static final class PneumaticsConstants {
         public static final int SOLOMON_PORT = 7;
     }
+    public static final class GameConstants {
+        //determines whether control board should be initialized with ddr pad or xbox controller
+        public static final boolean NOMINAL_RUN = true;
+    }
 }
