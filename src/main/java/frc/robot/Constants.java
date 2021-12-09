@@ -14,13 +14,22 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int FRONT_LEFT = 10;
-        public static final int FRONT_RIGHT = 13;
-        public static final int BACK_RIGHT = 12;
-        public static final int BACK_LEFT = 11;
+        public static final int FRONT_LEFT = 60;
+        public static final int FRONT_RIGHT = 51;
+        public static final int BACK_RIGHT = 50;
+        public static final int BACK_LEFT = 40;
+
+        public static final int GYRO_PORT = 0;
+        public static final double K_GYRO_REVOLUTION = 0.0128;
+        public static final double K_GYRO_TURNING = 0.005;
+        public static final int ULTRON_PORT = 1;
+        public static final double K_CRANK_SPEED = 0.1;
+
+        //public final static byte MPU6050_ADDRESS = 0x68;
     }
     public static final class IOConstants {
         public static final int DRIVE_PORT = 0;
+
     }
     public static final class PneumaticsConstants {
         public static final int SOLOMON_PORT = 7;

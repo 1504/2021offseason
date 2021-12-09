@@ -26,7 +26,7 @@ public class XBoxDriveBoard implements IDriveBoard {
 
     @Override
     public double getThrottle() {
-        return _controller.getY(Hand.kLeft);
+        return -_controller.getY(Hand.kLeft);
     }
 
     @Override

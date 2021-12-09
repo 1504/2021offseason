@@ -4,10 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.IOConstants;
 import frc.robot.ControlBoard.ControlBoard;
@@ -24,17 +28,24 @@ public class RobotContainer {
 
 
   private final Droop k_droop = new Droop();
+  
+  private final UsbCamera m_frontCamera = CameraServer.getInstance().startAutomaticCapture();
+
+  private final Joystick _joystickOne = new Joystick(1);
+  private final Joystick _joystickTwo = new Joystick(2);
 
   //private final Joystick k_controller = new Joystick(IOConstants.DRIVE_PORT);
 
   private final ControlBoard k_controller = ControlBoard.getInstance();
+  ShuffleboardTab m_tab = Shuffleboard.getTab("Main");
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
-    k_droop.setDefaultCommand(new Droom(k_droop, () -> k_controller.getThrottle(),() -> k_controller.getRight()));
+    //k_droop.setDefaultCommand(new Droom(k_droop, () -> k_controller.getThrottle(),() -> k_controller.getRight()));
+    k_droop.setDefaultCommand(new Droom(k_droop, () -> _joystickTwo.getY(), () -> _joystickOne.getX()));
   }
 
   /**
